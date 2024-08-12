@@ -5,15 +5,9 @@ id_genre SERIAL PRIMARY KEY,
 name VARCHAR(60) NOT NULL
 );
 
---исполнитель
-CREATE TABLE IF NOT EXISTS executor(
+--автор
+CREATE TABLE IF NOT EXISTS author(
 id_author SERIAL PRIMARY KEY,
-name VARCHAR(60) NOT NULL
-);
-
---альбом
-CREATE TABLE IF NOT EXISTS album(
-id_album INTEGER PRIMARY KEY REFERENCES trek(id_trek),
 name VARCHAR(60) NOT NULL
 );
 
@@ -24,6 +18,11 @@ name VARCHAR(60) NOT NULL,
 time TIME
 );
 
+--альбом
+CREATE TABLE IF NOT EXISTS album(
+id_album INTEGER PRIMARY KEY REFERENCES trek(id_trek),
+name VARCHAR(60) NOT NULL
+);
 
 --коллекция
 CREATE TABLE IF NOT EXISTS collection(
@@ -40,21 +39,16 @@ CREATE TABLE IF NOT EXISTS genre_author (
 	CONSTRAINT GA PRIMARY KEY (genre_id, author_id)
 );
 
-
---автор_альбом
+--автор_альбома
 CREATE TABLE IF NOT EXISTS author_album (
 	album_id INTEGER REFERENCES album(id_album),
 	author_id INTEGER REFERENCES author(id_author),
 	CONSTRAINT AA PRIMARY KEY (album_id, author_id)
 );
 
-
---коллекция_трек
+--коллекция_треков
 CREATE TABLE IF NOT EXISTS collection_trek (
 	collection_id INTEGER REFERENCES collection(id_collection),
 	trek_id INTEGER REFERENCES trek(id_trek),
 	CONSTRAINT CT PRIMARY KEY (collection_id, trek_id)
 	);
-
-
-
