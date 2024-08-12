@@ -5,9 +5,15 @@ id_genre SERIAL PRIMARY KEY,
 name VARCHAR(60) NOT NULL
 );
 
---автор
-CREATE TABLE IF NOT EXISTS author(
+--исполнитель
+CREATE TABLE IF NOT EXISTS executor(
 id_author SERIAL PRIMARY KEY,
+name VARCHAR(60) NOT NULL
+);
+
+--альбом
+CREATE TABLE IF NOT EXISTS album(
+id_album INTEGER PRIMARY KEY REFERENCES trek(id_trek),
 name VARCHAR(60) NOT NULL
 );
 
@@ -16,12 +22,6 @@ CREATE TABLE IF NOT EXISTS trek(
 id_trek SERIAL PRIMARY KEY,
 name VARCHAR(60) NOT NULL,
 time TIME
-);
-
---альбом
-CREATE TABLE IF NOT EXISTS album(
-id_album INTEGER PRIMARY KEY REFERENCES trek(id_trek),
-name VARCHAR(60) NOT NULL
 );
 
 --коллекция
